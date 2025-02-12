@@ -9,6 +9,7 @@ function Cadastro() {
 
     function salvar(){
         console.log("O nome cadastrado é:"+nome);
+        setNome( nome.toUpperCase() );
     }
 
     return ( 
