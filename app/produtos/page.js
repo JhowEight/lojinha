@@ -4,14 +4,26 @@ import { useState } from "react";
 
 function Produtos() {
 
-    const[produto, setProduto] = useState({});
+    //const[produto, setProduto] = useState({});
+    const [produtos, setProdutos] = useState([{
+        nome: "Havaianas",
+        preco: "15,90",
+        quantidade: 60
+
+    },{
+        nome: "Sapatênis",
+        preco: "29,90",
+        quantidade: 40
+
+    }
+]);
 
     const[nome, setNome] = useState("");
     const[preco, setPreco] = useState("");
     const[quantidade, setQuantidade] = useState("");
 
-    const[mostraListagem, setListagem] = useState(false);
-    const[mostraCadastro, setCadastro] = useState(false);
+    const[mostraListagem, setListagem] = useState(true);
+    const[mostraCadastro, setCadastro] = useState(true);
 
     function setExibicao(tela){
         
@@ -29,7 +41,7 @@ function Produtos() {
     }
 
     function salvar(e){
-        e.preventDefault();
+        e.preventDefault();// Não fazer reload da pagina quando enviar
         const objeto = {
             nome: nome,
             preco: preco,
@@ -37,7 +49,7 @@ function Produtos() {
 
         }
 
-        setProduto(objeto);
+        setProdutos([...produtos, objeto]);
 
     }
 
@@ -105,9 +117,7 @@ function Produtos() {
                         <h2 className="font-bold mb-5" >Listagem de Produtos</h2>
 
                         <ul>
-                            <li> {produto.nome} - R$ {produto.preco} e {produto.quantidade} </li>
-                            <li> {produto.nome} - R$ {produto.preco} e {produto.quantidade} </li>
-                            <li> {produto.nome} - R$ {produto.preco} e {produto.quantidade} </li>
+                             {produtos.map((i)=> <span><li> {i.nome} - {i.preco} - {i.quantidade} </li></span>)}
                         </ul>
 
                     </div>
